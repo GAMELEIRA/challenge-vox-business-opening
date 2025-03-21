@@ -8,7 +8,8 @@ export class RouterService {
 
   constructor(private router: Router) {}
 
-  public navigateToPage(url: string) {
-    this.router.navigateByUrl(url);
+  public navigateToPage(url: string, object?: any): void {
+    this.router.navigateByUrl(url, { state: object ? { data: object } : undefined });
   }
+  
 }

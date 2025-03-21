@@ -1,19 +1,18 @@
 import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-
-import { CardSection } from '../../models/CardSection';
+import { FormsModule } from '@angular/forms';
 import { ButtonComponent } from "../button/button.component";
 import { Card } from '../../models/Card.model';
+import { CardSection } from '../../models/CardSection';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
-  selector: 'app-card',
+  selector: 'app-form',
   standalone: true,
-  imports: [CommonModule, ButtonComponent],
-  templateUrl: './card.component.html',
-  styleUrl: './card.component.scss'
+  imports: [CommonModule, FormsModule, ButtonComponent],
+  templateUrl: './form.component.html',
+  styleUrl: './form.component.scss'
 })
-export class CardComponent implements OnInit {
-
+export class FormComponent {
   @Input()
   title?: string | number;
 
@@ -31,18 +30,22 @@ export class CardComponent implements OnInit {
 
   @Output()
   primaryAction = new EventEmitter<void>();
-  
+
   @Output()
   secondaryAction = new EventEmitter<void>();
 
+  @Output()
+  saveAction = new EventEmitter<Record<string, any>>();
+
   protected sections: CardSection[] = [];
+
+  public idFields: number = 0
 
   ngOnInit() {
     if (this.dataObject) {
       this.sections = this.groupObject(this.dataObject);
     }
   }
-
   private groupObject(obj: any): CardSection[] {
     let sections: CardSection[] = [];
 
@@ -55,7 +58,7 @@ export class CardComponent implements OnInit {
       } else {
         let generalSection = sections.find(sec => sec.title === 'Geral');
         if (!generalSection) {
-          generalSection = { items: [] };
+          generalSection = { title: 'Geral', items: [] };
           sections.push(generalSection);
         }
         generalSection.items.push({ label: this.formatTitle(key), description: String(value) });
@@ -87,7 +90,51 @@ export class CardComponent implements OnInit {
     this.primaryAction.emit();
   }
 
-  public onSecondaryClick() {
-    this.secondaryAction.emit();
+  public onSaveClick() {
+    this.saveAction.emit(this.dataObject);
   }
+
+  public filteredSections() {
+    return this.sections.filter(section => {
+      if (section.title === 'Geral') {
+        return section.items.some(item => item.label !== 'Id');
+      }
+      return true;
+    });
+  }
+
+  public getInputType(item: any): string {
+    if (typeof item.description === 'number') {
+      return 'number';
+    }
+    if (typeof item.description === 'boolean') {
+      return 'checkbox';
+    }
+    if (typeof item.description === 'string') {
+      if (this.isEmail(item.description)) {
+        return 'email';
+      }
+      if (this.isDate(item.description)) {
+        return 'date';
+      }
+      return 'text';
+    }
+    return 'text';
+  }
+
+
+  private isEmail(value: string): boolean {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+  }
+
+  private isDate(value: string): boolean {
+    return /^\d{4}-\d{2}-\d{2}$/.test(value);
+  }
+
+  public updateDataObject(label: string, value: any) {
+    if (this.dataObject) {
+      this.dataObject[label] = value;
+    }
+  }
+  
 }

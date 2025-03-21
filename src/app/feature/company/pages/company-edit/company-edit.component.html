@@ -1,1 +1,18 @@
-<p>company-edit works!</p>
+<app-header
+  imageWidth="100"
+  imageHeight="auto"
+  imageSrc="assets/images/logo-white.png"
+  imageAlt="Logo da Vox Tecnologia"
+  title="Abertura de Empresa"
+  [buttonBack]="true"
+>
+</app-header>
+<app-form
+  *ngIf="companyApplication"
+  title="Editar Informações"
+  [description]="'Altere os campos abaixo e clique em salvar.'"
+  [dataObject]="companyApplication"
+  [primaryLabelButton]="'Cancelar'"
+  (primaryAction)="onCancel()"
+  (saveAction)="onFormSave($event)">
+</app-form>

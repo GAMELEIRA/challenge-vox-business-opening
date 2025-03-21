@@ -1,0 +1,55 @@
+<div class="max-w-2xl mx-auto bg-white shadow-lg rounded-xl p-6 mb-6">
+  <div class="border-b pb-3 mb-4">
+    <h1 class="text-xl font-bold text-gray-800">{{ title }}</h1>
+  </div>
+
+  <div *ngIf="description">
+    <p class="text-gray-600">{{ description }}</p>
+  </div>
+
+  <div *ngIf="sections.length > 0">
+    <div *ngFor="let section of filteredSections()" class="mb-6">
+      <h2
+        *ngIf="section.title"
+        class="text-lg font-bold text-gray-700 border-b pb-2 mb-3"
+      >
+        {{ section.title }}
+      </h2>
+
+      <form *ngFor="let item of section.items" class="mb-4 last:mb-0">
+        <div *ngIf="item.label !== 'Id'">
+          <label
+            *ngIf="item.label"
+            class="text-lg font-semibold text-blue-600"
+            [for]="item.label"
+            >{{ item.label }}</label
+          >
+          <input
+            *ngIf="item.description"
+            class="border p-2 rounded w-full text-gray-700"
+            [value]="item.description"
+            [(ngModel)]="item.description"
+            [name]="item.label"
+            [type]="getInputType(item)"
+            [id]="item.label"
+          />
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="mt-6 flex gap-4">
+    <app-button
+      *ngIf="primaryLabelButton"
+      [label]="primaryLabelButton"
+      (action)="onPrimaryClick()"
+      type="primary"
+    ></app-button>
+
+    <app-button
+      label="Salvar"
+      (action)="onSaveClick()"
+      type="primary"
+    ></app-button>
+  </div>
+</div>

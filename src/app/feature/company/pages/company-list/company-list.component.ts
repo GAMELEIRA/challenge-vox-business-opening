@@ -32,7 +32,8 @@ export class CompanyListComponent {
     this.routerService.navigateToPage(`/companies/detail/${id}`);
   } 
 
-  public navigateToShowEditionOfCompany = (id: string) => {
-    this.routerService.navigateToPage(`/companies/edit/${id}`);
-  } 
+  public navigateToShowEditionOfCompany = (company: CompanyApplication) => {
+    this.routerService.navigateToPage(`/companies/edit/${company.id}`, { state: { companyData: company } });
+  }
+  
 }
