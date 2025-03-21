@@ -51,10 +51,8 @@ export class CompanyEditComponent implements OnInit {
   public onFormSave = (updatedData: Record<string, any>) => {
     const updatedCompany = { ...this.companyApplication, ...updatedData };
     this.companyService.putCompany(updatedCompany).subscribe(res => {
-      console.log(res);
       this.location.back();
     });
   }
-  
 
 }

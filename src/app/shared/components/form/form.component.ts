@@ -4,11 +4,12 @@ import { ButtonComponent } from "../button/button.component";
 import { Card } from '../../models/Card.model';
 import { CardSection } from '../../models/CardSection';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { TranslatePipe } from '../../pipes/translate/translate.pipe';
 
 @Component({
   selector: 'app-form',
   standalone: true,
-  imports: [CommonModule, FormsModule, ButtonComponent],
+  imports: [CommonModule, FormsModule, ButtonComponent, TranslatePipe],
   templateUrl: './form.component.html',
   styleUrl: './form.component.scss'
 })
@@ -46,6 +47,7 @@ export class FormComponent {
       this.sections = this.groupObject(this.dataObject);
     }
   }
+
   private groupObject(obj: any): CardSection[] {
     let sections: CardSection[] = [];
 

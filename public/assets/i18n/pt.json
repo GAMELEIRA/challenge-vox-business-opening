@@ -1,0 +1,15 @@
+{
+  "applicant": "Solicitante",
+  "responsibleName": "Nome do Responsável",
+  "cpfNumber": "CPF",
+  "birthDate": "Data de Nascimento",
+  "company": "Empresa",
+  "tradeName": "Nome Fantasia",
+  "zipCode": "CEP",
+  "street": "Rua",
+  "number": "Número",
+  "complement": "Complemento",
+  "neighborhood": "Bairro",
+  "city": "Cidade",
+  "state": "Estado"
+}

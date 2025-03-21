@@ -13,7 +13,7 @@
         *ngIf="section.title"
         class="text-lg font-bold text-gray-700 border-b pb-2 mb-3"
       >
-        {{ section.title }}
+        {{ section.title | translate }}
       </h2>
 
       <form *ngFor="let item of section.items" class="mb-4 last:mb-0">
@@ -22,7 +22,7 @@
             *ngIf="item.label"
             class="text-lg font-semibold text-blue-600"
             [for]="item.label"
-            >{{ item.label }}</label
+            >{{ item.label  | translate }}</label
           >
           <input
             *ngIf="item.description"

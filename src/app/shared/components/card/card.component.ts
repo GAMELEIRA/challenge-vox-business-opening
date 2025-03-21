@@ -4,11 +4,12 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { CardSection } from '../../models/CardSection';
 import { ButtonComponent } from "../button/button.component";
 import { Card } from '../../models/Card.model';
+import { TranslatePipe } from '../../pipes/translate/translate.pipe';
 
 @Component({
   selector: 'app-card',
   standalone: true,
-  imports: [CommonModule, ButtonComponent],
+  imports: [CommonModule, ButtonComponent, TranslatePipe],
   templateUrl: './card.component.html',
   styleUrl: './card.component.scss'
 })
@@ -79,7 +80,7 @@ export class CardComponent implements OnInit {
     return cards;
   }
 
-  private formatTitle(text: string): string {
+  public formatTitle(text: string): string {
     return text.replace(/([A-Z])/g, ' $1').replace(/^./, str => str.toUpperCase());
   }
 
