@@ -1,25 +1,36 @@
+import { CommonModule, Location } from '@angular/common';
 import { Component, input, Input } from '@angular/core';
 
 @Component({
   selector: 'app-header',
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss'
 })
 export class HeaderComponent {
+
   @Input()
   public title!: string;
 
   @Input() 
-  public image!: string;
+  public imageSrc!: string;
 
   @Input()
-  public alt!: string;
+  public imageAlt!: string;
 
   @Input() 
-  public width!: string;
+  public imageWidth!: string;
 
   @Input()
-  public height!: string;
+  public imageHeight!: string;
+
+  @Input()
+  public buttonBack: boolean = false;
+
+  constructor(private location: Location){}
+
+  public navigateToBack = () => {
+    this.location.back();
+  }
 
 }

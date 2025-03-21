@@ -1,8 +1,15 @@
 <header class="flex items-center justify-between p-4 bg-blue-600 text-white">
-  <div class="app-container-inline">
-    <img class="app-item-inline" [width]="width" [height]="height" [src]="image" [alt]="alt"/>
+  <div *ngIf="buttonBack" class="app-container-inline">
+    <button (click)="navigateToBack()" class="flex items-center space-x-2 text-white hover:text-gray-200">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+      </svg>
+      <span>Voltar</span>
+    </button>
   </div>
-
+  <div class="app-container-inline">
+    <img [src]="imageSrc" [alt]="imageAlt" [width]="imageWidth" [height]="imageHeight" />
+  </div>
   <div class="app-container-inline">
     <h1 class="app-item-inline text-2xl font-bold">{{ title }}</h1>
   </div>
