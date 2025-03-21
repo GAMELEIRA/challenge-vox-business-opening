@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
-import { CompanyService } from '../services/company/company.service';
-import { CardComponent } from "../../../shared/components/card/card.component";
 import { CommonModule } from '@angular/common';
-import { CompanyApplication } from '../models/CompanyApplication';
+import { CardComponent } from '../../../../shared/components/card/card.component';
+import { CompanyApplication } from '../../models/CompanyApplication';
+import { CompanyService } from '../../services/company/company.service';
+import { RouterService } from '../../../../shared/services/router/router.service';
 
 @Component({
   selector: 'app-company-list',
@@ -15,7 +16,8 @@ export class CompanyListComponent {
   protected companyApplication!: Array<CompanyApplication>;
 
   constructor(
-    private companyService: CompanyService
+    private companyService: CompanyService,
+    public routerService: RouterService
   ) {
     this.requestGetCompanys();
   }
@@ -25,4 +27,8 @@ export class CompanyListComponent {
     this.companyApplication = res;
    });
   }
+
+  public navigateToShowDetailsOfCompany = (id: string) => {
+    this.routerService.navigateToPage(`/companies/detail/${id}`);
+  } 
 }

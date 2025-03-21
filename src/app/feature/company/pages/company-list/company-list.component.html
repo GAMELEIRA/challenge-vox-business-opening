@@ -1,3 +1,10 @@
 <div *ngFor="let item of companyApplication">
-  <app-card [title]="item.applicant.responsibleName" [description]="item.company.tradeName"></app-card>
+  <app-card 
+    [title]="item.applicant.responsibleName" 
+    [description]="item.company.tradeName" 
+    primaryLabelButton="Visualizar" 
+    (primaryAction)="navigateToShowDetailsOfCompany('1')" 
+    secondLabelButton="Editar" 
+    (secondaryAction)="navigateToShowDetailsOfCompany('1')"
+    ></app-card>
 </div>

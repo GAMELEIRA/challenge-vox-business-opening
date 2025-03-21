@@ -1,20 +1,39 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Card } from './models/Card.model';
 import { CardSection } from './models/CardSection';
+import { ButtonComponent } from "../button/button.component";
 
 @Component({
   selector: 'app-card',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, ButtonComponent],
   templateUrl: './card.component.html',
   styleUrl: './card.component.scss'
 })
 export class CardComponent implements OnInit {
 
-  @Input() title!: string | number;
-  @Input() description?: string;
-  @Input() dataObject?: Record<string, any>;
+  @Input()
+  title!: string | number;
+
+  @Input()
+  description?: string;
+
+  @Input()
+  dataObject?: Record<string, any>;
+
+  @Input()
+  primaryLabelButton?: string;
+
+  @Input()
+  secondLabelButton?: string;
+
+  @Output()
+  primaryAction = new EventEmitter<void>();
+  
+  @Output()
+  secondaryAction = new EventEmitter<void>();
+
   protected sections: CardSection[] = [];
 
   ngOnInit() {
@@ -61,5 +80,13 @@ export class CardComponent implements OnInit {
 
   private formatTitle(text: string): string {
     return text.replace(/([A-Z])/g, ' $1').replace(/^./, str => str.toUpperCase());
+  }
+
+  public onPrimaryClick() {
+    this.primaryAction.emit();
+  }
+
+  public onSecondaryClick() {
+    this.secondaryAction.emit();
   }
 }
