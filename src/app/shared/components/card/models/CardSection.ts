@@ -1,6 +1,6 @@
 import { Card } from "./Card.model";
 
 export class CardSection {
-  title!: string;
+  title?: string;
   items!: Card[];
 }

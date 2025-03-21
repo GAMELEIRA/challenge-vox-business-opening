@@ -13,7 +13,8 @@ import { CardSection } from './models/CardSection';
 export class CardComponent implements OnInit {
 
   @Input() title!: string | number;
-  @Input() dataObject!: Record<string, any>;
+  @Input() description?: string;
+  @Input() dataObject?: Record<string, any>;
   protected sections: CardSection[] = [];
 
   ngOnInit() {
@@ -34,7 +35,7 @@ export class CardComponent implements OnInit {
       } else {
         let generalSection = sections.find(sec => sec.title === 'Geral');
         if (!generalSection) {
-          generalSection = { title: 'Geral', items: [] };
+          generalSection = { items: [] };
           sections.push(generalSection);
         }
         generalSection.items.push({ label: this.formatTitle(key), description: String(value) });
