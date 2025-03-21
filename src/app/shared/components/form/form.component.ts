@@ -52,7 +52,7 @@ export class FormComponent {
     Object.entries(obj).forEach(([key, value]) => {
       if (typeof value === 'object' && value !== null) {
         sections.push({
-          title: this.formatTitle(key),
+          title: key,
           items: this.flattenObject(value)
         });
       } else {
@@ -61,7 +61,7 @@ export class FormComponent {
           generalSection = { title: 'Geral', items: [] };
           sections.push(generalSection);
         }
-        generalSection.items.push({ label: this.formatTitle(key), description: String(value) });
+        generalSection.items.push({ label: key, description: String(value) });
       }
     });
 
@@ -75,7 +75,7 @@ export class FormComponent {
       if (typeof value === 'object' && value !== null) {
         cards = [...cards, ...this.flattenObject(value)];
       } else {
-        cards.push({ label: this.formatTitle(key), description: String(value) });
+        cards.push({ label: key, description: String(value) });
       }
     });
 
@@ -97,7 +97,7 @@ export class FormComponent {
   public filteredSections() {
     return this.sections.filter(section => {
       if (section.title === 'Geral') {
-        return section.items.some(item => item.label !== 'Id');
+        return section.items.some(item => item.label !== 'id');
       }
       return true;
     });
@@ -130,11 +130,27 @@ export class FormComponent {
   private isDate(value: string): boolean {
     return /^\d{4}-\d{2}-\d{2}$/.test(value);
   }
-
-  public updateDataObject(label: string, value: any) {
-    if (this.dataObject) {
-      this.dataObject[label] = value;
-    }
+  public updateDataObject(label: string, event: any) {
+    if (!this.dataObject) return;
+  
+    const value = event.target.value;
+  
+    const updateNestedProperty = (obj: any, key: string, newValue: any): boolean => {
+      for (const prop in obj) {
+        if (obj.hasOwnProperty(prop)) {
+          if (prop === key) {
+            obj[prop] = newValue;
+            return true;
+          } else if (typeof obj[prop] === 'object' && obj[prop] !== null) {
+            const updated = updateNestedProperty(obj[prop], key, newValue);
+            if (updated) return true;
+          }
+        }
+      }
+      return false;
+    };
+  
+    updateNestedProperty(this.dataObject, label, value);
   }
   
 }
