@@ -1,44 +1,44 @@
 {
-  "empresas": [
+  "companies": [
     {
-      "solicitante": {
-        "ds_responsavel": "Catarina Ester da Cruz",
-        "nu_cpf": "73422953027",
-        "date_nascimento": "1984-04-20"
+      "id": "1",
+      "applicant": {
+        "responsibleName": "Catarina Ester da Cruz",
+        "cpfNumber": "73422953027",
+        "birthDate": "1984-04-20"
       },
-      "empresa": {
-        "ds_nome_fantasia": "Diogo e Marcelo Filmagens Ltda",
-        "endereco": {
-          "co_cep": 14022094,
-          "ds_logradouro": "Rua Alcino Jacinto Ramos",
-          "co_numero": "233",
-          "ds_complemento": null,
-          "ds_bairro": "Quinta da Primavera",
-          "ds_municipio": "Ribeirão Preto",
-          "ds_uf": "SP"
+      "company": {
+        "tradeName": "Diogo e Marcelo Filmagens Ltda",
+        "address": {
+          "zipCode": 14022094,
+          "street": "Rua Alcino Jacinto Ramos",
+          "number": "233",
+          "complement": null,
+          "neighborhood": "Quinta da Primavera",
+          "city": "Ribeirão Preto",
+          "state": "SP"
         }
-      },
-      "id": "1"
+      }
     },
     {
-      "solicitante": {
-        "ds_responsavel": "Ryan Vinicius Nicolas Almeida",
-        "nu_cpf": "02494725976",
-        "date_nascimento": "1990-09-30"
+      "id": "2",
+      "applicant": {
+        "responsibleName": "Ryan Vinicius Nicolas Almeida",
+        "cpfNumber": "02494725976",
+        "birthDate": "1990-09-30"
       },
-      "empresa": {
-        "ds_nome_fantasia": "Isabela e Benício Transportes Ltda",
-        "endereco": {
-          "co_cep": 14022094,
-          "ds_logradouro": "Rua Francisco Nunes Villela",
-          "co_numero": "233",
-          "ds_complemento": "Apt 304",
-          "ds_bairro": "Vila dos Comerciários I",
-          "ds_municipio": "Ribeirão Preto",
-          "ds_uf": "SP"
+      "company": {
+        "tradeName": "Isabela e Benício Transportes Ltda",
+        "address": {
+          "zipCode": 14022094,
+          "street": "Rua Francisco Nunes Villela",
+          "number": "233",
+          "complement": "Apt 304",
+          "neighborhood": "Vila dos Comerciários I",
+          "city": "Ribeirão Preto",
+          "state": "SP"
         }
-      },
-      "id": "2"
+      }
     }
   ]
 }

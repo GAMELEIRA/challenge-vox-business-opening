@@ -1,4 +1,4 @@
-class Card {
+export class Card {
   label!: string;
   description!: string;
 }

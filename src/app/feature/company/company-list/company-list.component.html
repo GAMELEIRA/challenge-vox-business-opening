@@ -1,1 +1,3 @@
-<p>company-list works!</p>
+<div *ngFor="let item of companyApplication">
+  <app-card [title]="item.company.tradeName" [dataObject]="item"></app-card>
+</div>
