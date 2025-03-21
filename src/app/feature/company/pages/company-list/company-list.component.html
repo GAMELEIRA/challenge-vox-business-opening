@@ -3,8 +3,8 @@
     [title]="item.applicant.responsibleName" 
     [description]="item.company.tradeName" 
     primaryLabelButton="Visualizar" 
-    (primaryAction)="navigateToShowDetailsOfCompany('1')" 
+    (primaryAction)="navigateToShowDetailsOfCompany(item.id)" 
     secondLabelButton="Editar" 
-    (secondaryAction)="navigateToShowDetailsOfCompany('1')"
+    (secondaryAction)="navigateToShowEditionOfCompany(item.id)"
     ></app-card>
 </div>

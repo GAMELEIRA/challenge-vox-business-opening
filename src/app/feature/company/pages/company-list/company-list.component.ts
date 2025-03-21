@@ -31,4 +31,8 @@ export class CompanyListComponent {
   public navigateToShowDetailsOfCompany = (id: string) => {
     this.routerService.navigateToPage(`/companies/detail/${id}`);
   } 
+
+  public navigateToShowEditionOfCompany = (id: string) => {
+    this.routerService.navigateToPage(`/companies/edit/${id}`);
+  } 
 }

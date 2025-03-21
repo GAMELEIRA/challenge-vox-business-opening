@@ -14,7 +14,7 @@ import { ButtonComponent } from "../button/button.component";
 export class CardComponent implements OnInit {
 
   @Input()
-  title!: string | number;
+  title?: string | number;
 
   @Input()
   description?: string;

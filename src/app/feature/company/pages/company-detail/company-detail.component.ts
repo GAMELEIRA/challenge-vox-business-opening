@@ -4,6 +4,7 @@ import { CompanyService } from '../../services/company/company.service';
 import { CompanyApplication } from '../../models/CompanyApplication';
 import { CardComponent } from '../../../../shared/components/card/card.component';
 import { HeaderComponent } from '../../../../shared/components/header/header.component';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-company-detail',
@@ -14,18 +15,24 @@ import { HeaderComponent } from '../../../../shared/components/header/header.com
 export class CompanyDetailComponent {
 
   public companyApplication!: CompanyApplication;
+  public companyId!: string | null;
 
   constructor(
-    private companyService: CompanyService
+    private companyService: CompanyService,
+    private route: ActivatedRoute
   ) {
-    this.requestCompanyService();
+    this.requestGetCompany();
   }
 
-  public requestCompanyService = () =>  {
-    this.companyService.getCompany('1').subscribe(res => {
-      this.companyApplication = res;
-      console.log(res);
-    })
+  public requestGetCompany = () => {
+    this.route.paramMap.subscribe(params => {
+      this.companyId = params.get('id');
+      if (this.companyId) {
+        this.companyService.getCompany(this.companyId).subscribe(res => {
+          this.companyApplication = res;
+        })
+      }
+    });
   }
 
 }

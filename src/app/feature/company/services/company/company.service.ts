@@ -17,7 +17,7 @@ export class CompanyService {
     return this.httpClient.get<Array<CompanyApplication>>(`${this.URL_BASE}`);
   };
 
-  public getCompany = (id: string): Observable<CompanyApplication> => {
+  public getCompany = (id: string | null): Observable<CompanyApplication> => {
     return this.httpClient.get<CompanyApplication>(`${this.URL_BASE}/${id}`);
   };
 }
