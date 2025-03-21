@@ -49,7 +49,7 @@ export class CardComponent implements OnInit {
     Object.entries(obj).forEach(([key, value]) => {
       if (typeof value === 'object' && value !== null) {
         sections.push({
-          title: this.formatTitle(key),
+          title: key,
           items: this.flattenObject(value)
         });
       } else {
@@ -58,7 +58,7 @@ export class CardComponent implements OnInit {
           generalSection = { items: [] };
           sections.push(generalSection);
         }
-        generalSection.items.push({ label: this.formatTitle(key), description: String(value) });
+        generalSection.items.push({ label: key, description: String(value) });
       }
     });
 
@@ -72,7 +72,7 @@ export class CardComponent implements OnInit {
       if (typeof value === 'object' && value !== null) {
         cards = [...cards, ...this.flattenObject(value)];
       } else {
-        cards.push({ label: this.formatTitle(key), description: String(value) });
+        cards.push({ label: key, description: String(value) });
       }
     });
 

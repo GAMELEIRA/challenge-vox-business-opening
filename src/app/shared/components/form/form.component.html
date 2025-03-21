@@ -28,7 +28,7 @@
             *ngIf="item.description"
             class="border p-2 rounded w-full text-gray-700"
             [value]="item.description"
-            [(ngModel)]="item.description"
+            (input)="updateDataObject(item.label, $event)"
             [name]="item.label"
             [type]="getInputType(item)"
             [id]="item.label"
