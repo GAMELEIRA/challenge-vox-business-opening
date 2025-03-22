@@ -116,14 +116,13 @@ Se não houver erros, você pode fazer [uso](#uso) do projeto.
 
 ## Estrutura do Projeto
 
-Este projeto segue os princípios estabelecidos pela comunidade do Angular e foi estruturado de acordo com as [melhores práticas](https://dev.to/digitaldino/series/22633), organizando de maneira clara os componentes compartilhados e específicos, bem como os módulos correspondentes, organizando em modulos core, feature e shared.
+Este projeto segue os princípios estabelecidos pela comunidade do Angular e foi estruturado de acordo com as [melhores práticas](https://dev.to/digitaldino/series/22633), organizando de maneira clara os componentes compartilhados e específicos, bem como os módulos correspondentes, organizando em modulos feature e shared.
 
 **Arquitetura do Projeto**
 
 O projeto está organizado da seguinte forma para garantir modularidade e facilidade de manutenção:
 
 - `src/app/`
-  `/core`
   `/feature`
   `/shared`
 
