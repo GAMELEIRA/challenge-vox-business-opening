@@ -39,6 +39,25 @@
           "state": "SP"
         }
       }
+    },
+    {
+      "id": "3",
+      "applicant": {
+        "responsibleName": " Gabriel",
+        "cpfNumber": "47878663890",
+        "birthDate": " 27041999"
+      },
+      "company": {
+        "tradeName": " Gabriel LTDA",
+        "address": {
+          "zipCode": "123456789",
+          "street": " Teste",
+          "number": " 65210",
+          "complement": " teste",
+          "neighborhood": " itaquera",
+          "city": " osasco"
+        }
+      }
     }
   ]
 }

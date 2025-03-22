@@ -24,4 +24,28 @@ export class CompanyService {
   public putCompany = (companyApplication: CompanyApplication): Observable<CompanyApplication> => {
     return this.httpClient.put<CompanyApplication>(`${this.URL_BASE}/${companyApplication.id}`, companyApplication);
   }
+  public postCompany(companyApplication: CompanyApplication): Observable<any> {
+    return new Observable((observer) => {
+      this.getCompanys().subscribe({
+        next: (value) => {
+          const id = value.length + 1;
+          companyApplication.id = String(id);
+          this.httpClient.post<CompanyApplication>(`${this.URL_BASE}`, companyApplication)
+            .subscribe({
+              next: (response) => {
+                observer.next(response);
+                observer.complete();
+              },
+              error: (err) => {
+                observer.error(err);
+              }
+            });
+        },
+        error: (err) => {
+          observer.error(err);
+        }
+      });
+    });
+  }
+
 }
